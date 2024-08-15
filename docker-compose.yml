@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   # Update this to the name of the service you want to work with in your docker-compose.yml file
   init-ubuntu:
@@ -13,8 +12,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      SSH_AUTH_SOCK: "/tmp/ssh-agent.sock"
     volumes:
       - .:/app
+      - "$SSH_AUTH_SOCK:/tmp/ssh-agent.sock"
     working_dir: /app
 
 
